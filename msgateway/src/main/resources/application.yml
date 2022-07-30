@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: mscloudgateway
+  # Habilitando o gateway para ligar os micros serviços 
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+  # para obter as urls em caixa baixa  
+          lower-case-service-id: true
+          
+  #Configurações de segurança do keycloak        
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+        # realm do keyclock
+          issuer-uri: http://localhost:8081/realms/ms-realm  
+
+# porta de acesso           
+server:
+  port: 8080
+  
+  
+eureka:
+  client:
+    fetch-registry: true 
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka
+               

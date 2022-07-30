@@ -1,0 +1,51 @@
+   
+#################################################################
+#                       PROPRIEDADES DO SISTEMA                 #
+#################################################################
+
+spring:
+  application:
+    name: msclientes 
+#Banco de dados
+  datasource:
+    url: jdbc:h2:file:./data/mscliente 
+    username: root
+    password:  
+  h2:
+    console:
+      enabled: true
+      path: /h2-mscliente
+  jpa:
+    hibernate:
+      ddl-auto: update 
+  
+
+server:
+  port: 0    
+
+# local do service onde o microserviço ira se registrar  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka
+# forma randomica de como o serviço ira se registrar com outro nome      
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}  
+
+#Configuração actuator    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# Configurando arquivo de log        
+logging:
+  file:
+#nome e logal do arquivo  
+    name: ./logs/log-file.log
+    
+
+        
+
+      

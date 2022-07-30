@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: msavaliadorcredito
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 0    
+
+# local do service onde o microserviço ira se registrar  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka
+# forma randomica de como o serviço ira se registrar com outro nome      
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    
+mq:
+  queues:
+    emissao-cartoes: emissao-cartoes
+    
+#Configuração actuator    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# Configurando arquivo de log        
+logging:
+  file:
+#nome e logal do arquivo  
+    name: ./logs/log-file.log
+    
+

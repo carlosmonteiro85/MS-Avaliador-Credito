@@ -1,0 +1,20 @@
+# nome da aplicação, sera extremamete importante
+spring:
+  application:
+    name: eurekaserver
+#Configuração de segurança do acesso ao eureka    
+  security:
+    user:
+      name: admin
+      password: admin
+
+# a porta 8761 é padrão para o eurekaserver    
+server:
+  port: 8761    
+ 
+# configuração para o eureka não se auto registrar a nova instancia quando criara    
+eureka:
+  client:
+    register-with-eureka: false
+  #não buscar o registro do microserviço, pois estara de responsabilidade do Gatway de faze-lo  
+    fetch-registry: false

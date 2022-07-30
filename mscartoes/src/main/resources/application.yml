@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: mscartoes
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+#Banco de dados
+  datasource:
+    url: jdbc:h2:file:./data/mscartoes 
+    username: root
+    password:  
+  h2:
+    console:
+      enabled: true
+      path: /h2-mscartoes
+  jpa:
+    hibernate:
+      ddl-auto: update 
+
+server:
+  port: 0    
+
+# local do service onde o microserviço ira se registrar  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka
+# forma randomica de como o serviço ira se registrar com outro nome      
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}    
+    
+mq:
+  queues:
+    emissao-cartoes: emissao-cartoes
+    
+#Configuração actuator    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# Configurando arquivo de log        
+logging:
+  file:
+#nome e logal do arquivo  
+    name: ./logs/log-file.log
+    
+    
+    
